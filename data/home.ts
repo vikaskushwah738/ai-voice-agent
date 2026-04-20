@@ -10,7 +10,7 @@ export const PROJECT = {
     phoneDisplay: "+91 98100 00000",
     phoneTel: "+919810000000",
     whatsapp: "919810000000",
-    email: "sales@godrejinternational.com",
+    email: "sales@godrejDemo.com",
 } as const;
 
 export const HIGHLIGHTS = [
