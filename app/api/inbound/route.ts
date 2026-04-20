@@ -104,7 +104,7 @@ export async function POST(request: Request) {
                 name: data.name,
                 phone: data.mobile,
                 email: data.email ? data.email.toLowerCase() : null,
-                projectName: data.projectName,
+                message: data.message,
             },
         });
 

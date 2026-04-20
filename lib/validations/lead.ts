@@ -17,9 +17,9 @@ export const leadSchema = z.object({
         .or(z.literal("")), // allows empty string
 
 
-    projectName: z
+    message: z
         .string()
-        .min(1, "Project name is required")
+        .min(1, "Message is required")
         .trim(),
 });
 
