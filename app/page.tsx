@@ -1,7 +1,7 @@
 import { SectionHeading } from "@/components/HeaderSection";
 import HeroSection from "@/components/home/HeroSection";
 import { LeadForm } from "@/components/LeadForm";
-import { HIGHLIGHTS, LANDMARKS, PROJECT } from "@/data/home";
+import { HIGHLIGHTS, LANDMARKS } from "@/data/home";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 

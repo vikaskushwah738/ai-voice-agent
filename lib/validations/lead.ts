@@ -19,8 +19,7 @@ export const leadSchema = z.object({
 
     message: z
         .string()
-        .min(1, "Message is required")
-        .trim(),
+        .min(1, "Please select at least one option").optional(),
 });
 
 // 👉 Type inference (important for TS)
