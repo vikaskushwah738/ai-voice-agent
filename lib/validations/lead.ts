@@ -10,17 +10,12 @@ export const leadSchema = z.object({
         .string()
         .regex(/^\+?[1-9]\d{7,14}$/, "Invalid international mobile number"),
 
-
     email: z
         .string()
         .email("Invalid email")
         .optional()
         .or(z.literal("")), // allows empty string
 
-    city: z
-        .string()
-        .min(1, "City is required")
-        .trim(),
 
     projectName: z
         .string()
