@@ -31,7 +31,7 @@ export function LeadForm({
     if (submitted) {
         return (
             <div className={`text-center py-12 ${dark ? "text-ivory" : "text-ink"}`}>
-                <div className="text-[var(--gold)] text-5xl mb-4">✦</div>
+                <div className="text-[#CE9A43] text-5xl mb-4">✦</div>
                 <h3 className="font-serif text-2xl mb-3">Thank you</h3>
                 <p className={`text-sm ${dark ? "text-ivory/70" : "text-muted-foreground"}`}>
                     A relationship manager will reach out within the next business hour.
@@ -62,7 +62,7 @@ export function LeadForm({
                     <option className="text-ink">Penthouse</option>
                     <option className="text-ink">Business Space</option>
                 </select>
-                <button type="submit" className="text-gray-50 w-full bg-black text-ink hover:bg-[#000000]/90 text-lg font-medium py-3 px-6 rounded-md transition-colors duration-500">
+                <button type="submit" className="text-gray-50 w-full bg-black  hover:bg-[#000000]/90 text-lg font-medium py-3 px-6 rounded-md transition-colors duration-500">
                     Request Callback
                 </button>
                 <p className={`text-[11px] leading-relaxed ${dark ? "text-ivory/50" : "text-muted-foreground"}`}>

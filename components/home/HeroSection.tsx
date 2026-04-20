@@ -29,7 +29,7 @@ const HeroSection = () => {
                     {/* Left Content */}
                     <div className="lg:col-span-7 ">
                         <p className="font-medium text-sm text-[#E5B579] flex items-center gap-3">
-                            <span >------</span>
+                            <span className="h-[1px] w-10 bg-[#CE9A43]" />
                             Pre-Launch · {PROJECT.location.split(",").slice(-1)[0].trim()}
                         </p>
 
