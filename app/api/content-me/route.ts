@@ -1,45 +1,54 @@
+import { leadSchema } from "@/lib/validations/lead";
+import { NextResponse } from "next/server";
 
+// import { prisma } from "@/lib/prisma";
 
-export async function POST(request) {
+export async function POST(request: Request) {
     try {
         const body = await request.json();
-        const { name, mobile, phone, email, city, projectName } = body;
 
+        // ✅ Zod validation
+        const result = leadSchema.safeParse(body);
 
-
-        if (Object.keys(errors).length > 0) {
-            return Response.json(
+        if (!result.success) {
+            return NextResponse.json(
                 {
                     success: false,
                     message: "Validation failed",
-                    errors
+                    errors: result.error.flatten().fieldErrors,
                 },
                 { status: 400 }
             );
         }
 
-        const lead = await leads.create({
-            name: name.trim(),
-            mobile,
-            phone: phone || null,
-            email: email.toLowerCase().trim(),
-            city: city.trim(),
-            projectName: projectName.trim()
+        const data = result.data;
+
+        // ✅ DB call
+        const lead = await prisma.lead.create({
+            data: {
+                name: data.name,
+                mobile: data.mobile,
+                email: data.email ? data.email.toLowerCase() : null,
+                city: data.city,
+                projectName: data.projectName,
+            },
         });
 
-        return Response.json(
+        return NextResponse.json(
             {
                 success: true,
                 message: "Lead created successfully",
-                data: lead
+                data: lead,
             },
             { status: 201 }
         );
     } catch (error) {
-        return Response.json(
+        console.error("POST /lead error:", error);
+
+        return NextResponse.json(
             {
                 success: false,
-                message: "Invalid request body"
+                message: "Something went wrong",
             },
             { status: 500 }
         );
