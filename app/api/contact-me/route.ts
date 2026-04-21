@@ -59,10 +59,21 @@ export async function POST(request: Request) {
 
 export async function GET() {
     try {
-        const clientinfo = await prisma.lead.findMany();
-        return NextResponse.json(clientinfo, { status: 200 });
+        const leads = await prisma.lead.findMany({
+            orderBy: {
+                createdAt: "desc",
+            },
+        });
+
+        return NextResponse.json(leads, {
+            headers: {
+                "Cache-Control": "no-store",
+            },
+        });
     } catch (error) {
-        console.log('Error fetching client info:', error);
-        return NextResponse.json({ message: 'Clould not find client info' }, { status: 500 })
+        return NextResponse.json(
+            { error: "Failed to fetch leads" },
+            { status: 500 }
+        );
     }
 }
