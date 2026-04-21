@@ -13,7 +13,7 @@ type AdminLayoutProps = {
 
 export default function AdminLayout({ children }: AdminLayoutProps) {
     return (
-        <div className="min-h-screen bg-gray-100 text-gray-900">
+        <div className="min-h-screen bg-gray-100 text-gray-900 pt-20">
             <div className="flex min-h-screen">
 
                 {/* Sidebar */}

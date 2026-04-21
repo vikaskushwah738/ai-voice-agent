@@ -89,7 +89,7 @@ export function LeadForm({
                 name: result.data.name,
                 phone: result.data.phone, // 🔁 mobile → phone
                 email: result.data.email || null,
-                interest: result.data.message || null, // 🔁 message → interest
+                message: result.data.message || null, // 🔁 message → interest
             };
 
             await submitLead(payload);
@@ -186,10 +186,10 @@ export function LeadForm({
 
                     >
                         <option disabled value="">Select enquiry type</option>
-                        <option value="Pricing">3 BHk Sky Residency</option>
-                        <option value="Site Visit">4 BHk Sky Residency</option>
-                        <option value="Floor Plans">Penthouse</option>
-                        <option value="Availability">Business Spaces</option>
+                        <option value="3 BHk Sky Residency">3 BHk Sky Residency</option>
+                        <option value="4 BHk Sky Residency">4 BHk Sky Residency</option>
+                        <option value="Penthouse">Penthouse</option>
+                        <option value="Business Spaces">Business Spaces</option>
                     </select>
                     {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message}</p>}
                 </div>

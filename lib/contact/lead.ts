@@ -4,7 +4,7 @@ export interface LeadPayload {
     name: string;
     phone: string;
     email: string | null;
-    interest: string | null;
+    message: string | null;
 }
 
 export async function submitLead(data: LeadPayload) {

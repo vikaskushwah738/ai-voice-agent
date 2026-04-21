@@ -30,7 +30,7 @@ export async function POST(request: Request) {
                 name: data.name,
                 phone: data.phone,
                 email: data.email ? data.email.toLowerCase() : null,
-                message: data.message,
+                message: data.message || null,
             },
         });
 
