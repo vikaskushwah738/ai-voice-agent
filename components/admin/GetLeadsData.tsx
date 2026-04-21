@@ -39,7 +39,7 @@ export default function LeadsPage() {
 
         const interval = setInterval(() => {
             fetchLeads();
-        }, 3000); // every 3 seconds
+        }, 10000); // every 10 seconds
 
         return () => clearInterval(interval);
     }, []);
