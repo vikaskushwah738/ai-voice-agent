@@ -115,7 +115,7 @@ export default function Home() {
               Grade-A office floors with double-height lobbies, sky terraces, EV-ready parking and concierge-grade hospitality. Designed for India's next generation of headquarters.
             </p>
             <div className="mt-10 flex gap-4">
-              <button className="bg-[#CE9A43] text-black px-6 py-2.5"><Link href="/contact">Enquire Now</Link></button>
+              <button className="bg-[#CE9A43] text-black px-6 py-2.5"><Link href="/reach-us">Enquire Now</Link></button>
               <button className="border border-[#99938A] text-[#15110C] px-6 py-2.5 text-gray-50"><Link href="/project">Learn More</Link></button>
             </div>
           </div>
