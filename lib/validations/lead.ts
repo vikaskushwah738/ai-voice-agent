@@ -6,7 +6,7 @@ export const leadSchema = z.object({
         .min(2, "Name must be at least 2 characters")
         .trim(),
 
-    mobile: z
+    phone: z
         .string()
         .regex(/^\+?[1-9]\d{7,14}$/, "Invalid international mobile number"),
 

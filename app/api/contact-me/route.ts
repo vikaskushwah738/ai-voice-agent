@@ -6,10 +6,12 @@ export async function POST(request: Request) {
     try {
         const body = await request.json();
 
+        console.log(" ✅ Received lead data:", body);
         // ✅ Zod validation
         const result = leadSchema.safeParse(body);
 
         if (!result.success) {
+            console.warn("❌ Validation failed:", result.error.flatten().fieldErrors);
             return NextResponse.json(
                 {
                     success: false,
@@ -26,7 +28,7 @@ export async function POST(request: Request) {
         const lead = await prisma.lead.create({
             data: {
                 name: data.name,
-                phone: data.mobile,
+                phone: data.phone,
                 email: data.email ? data.email.toLowerCase() : null,
                 message: data.message,
             },
@@ -50,5 +52,17 @@ export async function POST(request: Request) {
             },
             { status: 500 }
         );
+    }
+}
+
+
+
+export async function GET() {
+    try {
+        const clientinfo = await prisma.lead.findMany();
+        return NextResponse.json(clientinfo, { status: 200 });
+    } catch (error) {
+        console.log('Error fetching client info:', error);
+        return NextResponse.json({ message: 'Clould not find client info' }, { status: 500 })
     }
 }

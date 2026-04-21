@@ -1,8 +1,10 @@
 "use client";
 
 import { PROJECT } from "@/data/home";
+import { submitLead } from "@/lib/contact/lead";
 import { leadSchema, type LeadInput } from "@/lib/validations/lead";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 interface Props {
     variant?: "light" | "dark";
@@ -21,7 +23,7 @@ export function LeadForm({
 }: Props) {
     const [form, setForm] = useState<LeadInput>({
         name: "",
-        mobile: "",
+        phone: "",
         email: "",
         message: "",
     });
@@ -64,12 +66,12 @@ export function LeadForm({
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
+        const toastId = toast.loading("Please wait...");
         const result = leadSchema.safeParse(form);
 
         if (!result.success) {
             const fieldErrors: FormErrors = {};
-
+            toast.error("Please fix the errors in the form.", { id: toastId });
             for (const issue of result.error.issues) {
                 const fieldName = issue.path[0] as keyof LeadInput;
                 fieldErrors[fieldName] = issue.message;
@@ -83,17 +85,26 @@ export function LeadForm({
 
         try {
             console.log("Submitted lead:", form);
+            const payload = {
+                name: result.data.name,
+                phone: result.data.phone, // 🔁 mobile → phone
+                email: result.data.email || null,
+                interest: result.data.message || null, // 🔁 message → interest
+            };
+
+            await submitLead(payload);
 
             setSubmitted(true);
+            toast.success("Successfully, our team will contact you soon", { id: toastId });
             setForm({
                 name: "",
-                mobile: "",
+                phone: "",
                 email: "",
                 message: "",
             });
             setErrors({});
         } catch (error) {
-            console.error("Lead submit error:", error);
+            toast.error("Failed to submit. Please try again.", { id: toastId });
         } finally {
             setLoading(false);
         }
@@ -140,16 +151,16 @@ export function LeadForm({
 
                 <div>
                     <input
-                        name="mobile"
+                        name="phone"
                         required
                         type="tel"
                         placeholder="Mobile Number"
-                        value={form.mobile}
+                        value={form.phone}
                         autoComplete="off"
                         onChange={handleChange}
                         className={inputClass}
                     />
-                    {errors.mobile && <p className="mt-1 text-sm text-red-500">{errors.mobile}</p>}
+                    {errors.phone && <p className="mt-1 text-sm text-red-500">{errors.phone}</p>}
                 </div>
 
                 <div>
