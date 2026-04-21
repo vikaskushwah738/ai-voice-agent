@@ -27,7 +27,7 @@ export async function POST(request: Request) {
         const lead = await prisma.lead.create({
             data: {
                 name: data.name,
-                phone: data.mobile,
+                phone: data.phone,
                 email: data.email ? data.email.toLowerCase() : null,
                 message: data.message,
             },
