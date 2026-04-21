@@ -181,7 +181,7 @@ export function LeadForm({
                         name="message"
                         value={form.message}
                         onChange={handleChange}
-                        className={inputClass}
+                        className={`${inputClass}  `}
                         defaultValue=""
 
                     >
