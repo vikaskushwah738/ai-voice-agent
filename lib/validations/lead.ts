@@ -3,24 +3,26 @@ import { z } from "zod";
 export const leadSchema = z.object({
     name: z
         .string()
-        .min(2, "Name must be at least 2 characters")
-        .trim(),
+        .trim()
+        .min(2, "Name must be at least 2 characters"),
 
     phone: z
         .string()
-        .regex(/^\+?[1-9]\d{7,14}$/, "Invalid international mobile number"),
+        .trim()
+        .regex(/^(\+91)?[6-9]\d{9}$/, "Invalid Indian mobile number"),
 
     email: z
         .string()
+        .trim()
         .email("Invalid email")
         .optional()
-        .or(z.literal("")), // allows empty string
+        .or(z.literal("")),
 
-
-    message: z
+    interest: z
         .string()
-        .min(1, "Please select at least one option").optional(),
+        .trim()
+        .optional()
+        .or(z.literal("")),
 });
 
-// 👉 Type inference (important for TS)
 export type LeadInput = z.infer<typeof leadSchema>;

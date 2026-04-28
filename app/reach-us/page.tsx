@@ -1,4 +1,5 @@
 import { LeadForm } from "@/components/LeadForm";
+import DemoCallButton from "@/components/TestCall";
 import { PROJECT } from "@/data/home";
 import { Phone, MessageCircle, Mail, MapPin } from "lucide-react";
 
@@ -19,6 +20,10 @@ const ReachUs = () => {
                         <p className="mt-6 text-muted-foreground max-w-md leading-relaxed">
                             Visit our experience centre. Walk through scale models, material libraries, and a 1:1 mockup of the sky residence interior.
                         </p>
+
+                        <div className=" h-20 w-50 bg-green-500">
+                            <DemoCallButton />
+                        </div>
 
                         <div className="mt-12 space-y-6">
                             <ContactRow

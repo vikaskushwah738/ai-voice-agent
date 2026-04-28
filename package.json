@@ -9,14 +9,22 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@livekit/agents": "^1.2.8",
+    "@livekit/agents-plugin-deepgram": "^1.2.8",
+    "@livekit/agents-plugin-openai": "^1.2.8",
+    "@livekit/agents-plugin-sarvam": "^1.2.8",
+    "@livekit/agents-plugin-silero": "^1.2.8",
     "@prisma/client": "6.19",
     "dotenv": "^17.4.2",
+    "inngest": "^4.2.4",
+    "livekit-server-sdk": "^2.15.1",
     "lucide-react": "^1.8.0",
     "next": "16.2.4",
     "openai": "^6.34.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-hot-toast": "^2.6.0",
+    "sarvamai": "^1.1.7",
     "zod": "^4.3.6"
   },
   "devDependencies": {

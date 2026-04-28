@@ -14,10 +14,66 @@ datasource db {
 }
 
 model Lead {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
-  email     String?
-  phone     String
-  message   String?
-  createdAt DateTime @default(now())
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  phone           String
+  email           String?
+  interest        String?
+  city            String?
+  projectName     String?
+  source          String?   @default("website")
+  status          String    @default("NEW")
+  callScheduledAt DateTime?
+  calledAt        DateTime?
+  callStatus      String?   @default("pending")
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  callQueues CallQueue[]
+  callLogs   CallLog[]
+}
+
+model CallQueue {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  leadId        String    @db.ObjectId
+  phone         String
+  scheduledAt   DateTime
+  startedAt     DateTime?
+  finishedAt    DateTime?
+  status        String    @default("pending")
+  attempts      Int       @default(0)
+  priority      Int       @default(0)
+  roomName      String?
+  providerJobId String?
+  errorMessage  String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  lead Lead @relation(fields: [leadId], references: [id])
+
+  @@index([status, scheduledAt])
+  @@index([leadId])
+}
+
+model CallLog {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  leadId       String    @db.ObjectId
+  queueId      String?   @db.ObjectId
+  provider     String
+  status       String
+  roomName     String?
+  phone        String
+  transcript   String?
+  summary      String?
+  recordingUrl String?
+  startedAt    DateTime?
+  endedAt      DateTime?
+  errorMessage String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  lead Lead @relation(fields: [leadId], references: [id])
+
+  @@index([leadId])
+  @@index([queueId])
 }
